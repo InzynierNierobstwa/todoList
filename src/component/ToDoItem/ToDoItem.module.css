@@ -1,1 +1,25 @@
-/* No CSS *//*# sourceMappingURL=ToDoItem.module.css.map */
+.list__wrapper {
+  margin: auto;
+  max-width: 960px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px #000;
+  border-radius: 5px;
+}
+
+.list__name {
+  margin: 0.5em;
+  font-size: 1.4em;
+}
+
+.list__icon {
+  margin-right: 0.5em;
+}
+/*# sourceMappingURL=ToDoItem.module.css.map */
