@@ -6,9 +6,10 @@ import ToDoButton from "../ToDoButton/ToDoButton";
 
 class ToDoInput extends React.Component {
   render() {
+    const { item, handleChangeFn, handleSubmitFn } = this.props;
     return (
       <div>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmitFn}>
           <div className={styles.form__wrapper}>
             <div className={styles.form__inputWrapper}>
               <FontAwesomeIcon
@@ -21,10 +22,12 @@ class ToDoInput extends React.Component {
               type="text"
               placeholder="add a todo item"
               className={styles.form__input}
+              value={item}
+              onChange={handleChangeFn}
             ></input>
           </div>
+          <ToDoButton> add item </ToDoButton>
         </form>
-        <ToDoButton> add item </ToDoButton>
       </div>
     );
   }

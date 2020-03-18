@@ -4,9 +4,12 @@ import ToDoButton from "../ToDoButton/ToDoButton";
 
 class ToDoList extends React.Component {
   render() {
+    const { items } = this.props;
     return (
       <div>
-        <ToDoItem />
+        {items.map(item => {
+          return <ToDoItem key={item.id} title={item.title} />;
+        })}
         <ToDoButton> clear list </ToDoButton>
       </div>
     );
