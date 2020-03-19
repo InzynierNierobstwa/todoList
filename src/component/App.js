@@ -65,10 +65,19 @@ class App extends React.Component {
 
   keepDate = () => {
     const now = new Date();
-    const clock = `${now.getHours()} : ${now.getMinutes()} : ${now.getSeconds()}`;
-    const day = `${now.getDate()} . ${now.getMonth() +
-      1} . ${now.getFullYear()}`;
-    const time = `godz ${clock} dnia ${day}`;
+    const clock = `${
+      now.getHours() <= 9 ? `0${now.getHours()}` : `${now.getHours()}`
+    }:${
+      now.getMinutes() <= 9 ? `0${now.getMinutes()}` : `${now.getMinutes()}`
+    }:${
+      now.getSeconds() <= 9 ? `0${now.getSeconds()}` : `${now.getSeconds()}`
+    }`;
+    const day = `${
+      now.getDate() <= 9 ? `0${now.getDate()}` : `${now.getDate()}`
+    }.${
+      now.getMonth() < 9 ? `0${now.getMonth() + 1}` : `${now.getMonth() + 1}`
+    }.${now.getFullYear()}`;
+    const time = `godz ${clock} ${day}`;
     this.setState({ taskDate: time });
   };
 
@@ -89,7 +98,6 @@ class App extends React.Component {
           clearListFn={this.clearList}
           handleDeleteFn={this.handleDelete}
           handleEditFn={this.handleEdit}
-          keepDateFn={this.keepDate}
         />
       </div>
     );

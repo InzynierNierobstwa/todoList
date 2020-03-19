@@ -10,8 +10,10 @@ class ToDoItem extends React.Component {
 
     return (
       <li className={styles.list__wrapper}>
-        <h6 className={styles.list__name}>{date}</h6>
-        <h6 className={styles.list__name}>{title}</h6>
+        <div className={styles.list__textWrapper}>
+          <h6 className={styles.list__time}>{date}</h6>
+          <h6 className={styles.list__name}>{title}</h6>
+        </div>
         <div className={styles.list__icons}>
           <FontAwesomeIcon
             className={styles.list__icon}
