@@ -2,11 +2,17 @@ import React from "react";
 import styles from "./ToDoInput.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
-import ToDoButton from "../ToDoButton/ToDoButton";
+import ToDoButtonAdd from "../ToDoButtonAdd/ToDoButtonAdd";
 
 class ToDoInput extends React.Component {
   render() {
-    const { item, handleChangeFn, handleSubmitFn } = this.props;
+    const {
+      item,
+      handleChangeFn,
+      handleSubmitFn,
+      editItem,
+      keepDateFn
+    } = this.props;
     return (
       <div>
         <form className={styles.form} onSubmit={handleSubmitFn}>
@@ -26,7 +32,10 @@ class ToDoInput extends React.Component {
               onChange={handleChangeFn}
             ></input>
           </div>
-          <ToDoButton> add item </ToDoButton>
+          <ToDoButtonAdd keepDate={keepDateFn}>
+            {" "}
+            {editItem ? "edit item" : "add item"}{" "}
+          </ToDoButtonAdd>
         </form>
       </div>
     );

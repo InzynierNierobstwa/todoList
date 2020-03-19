@@ -10,7 +10,8 @@ class App extends React.Component {
     items: [],
     id: 0,
     item: "",
-    editItem: false
+    editItem: false,
+    taskDate: "task date"
   };
 
   handleChange = event => {
@@ -23,7 +24,8 @@ class App extends React.Component {
     event.preventDefault();
     const newItem = {
       id: this.state.id,
-      title: this.state.item
+      title: this.state.item,
+      date: this.state.taskDate
     };
     console.log(newItem);
 
@@ -36,6 +38,40 @@ class App extends React.Component {
     });
   };
 
+  clearList = () => {
+    this.setState({
+      items: []
+    });
+  };
+
+  handleDelete = id => {
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    this.setState({ items: filteredItems });
+  };
+
+  handleEdit = id => {
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+
+    const selectedItem = this.state.items.find(item => item.id === id);
+    console.log(selectedItem);
+
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      editItem: true,
+      id: id
+    });
+  };
+
+  keepDate = () => {
+    const now = new Date();
+    const clock = `${now.getHours()} : ${now.getMinutes()} : ${now.getSeconds()}`;
+    const day = `${now.getDate()} . ${now.getMonth() +
+      1} . ${now.getFullYear()}`;
+    const time = `godz ${clock} dnia ${day}`;
+    this.setState({ taskDate: time });
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -44,9 +80,17 @@ class App extends React.Component {
           item={this.state.item}
           handleChangeFn={this.handleChange}
           handleSubmitFn={this.handleSubmit}
+          editItem={this.state.editItem}
+          keepDateFn={this.keepDate}
         />
         <ToDoHeader>Todo List</ToDoHeader>
-        <ToDoList items={this.state.items} />
+        <ToDoList
+          items={this.state.items}
+          clearListFn={this.clearList}
+          handleDeleteFn={this.handleDelete}
+          handleEditFn={this.handleEdit}
+          keepDateFn={this.keepDate}
+        />
       </div>
     );
   }
